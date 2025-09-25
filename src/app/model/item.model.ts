@@ -1,0 +1,8 @@
+export interface item{
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    category?: string;
+    imageUrl?: string;
+}
