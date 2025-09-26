@@ -1,11 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../../services/menu.service';
+import { Observable } from 'rxjs';
+import { item } from '../../model/item.model';
+import { AppRoutingModule } from "../../app.routes";
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-menu',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule, CommonModule],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
+  items$!: Observable<item[]>;
+  constructor(private menuService : MenuService){}
+
+  ngOnInit(): void {
+    this.items$ = this.menuService.getMenu();
+
+    }
 }
+

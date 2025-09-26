@@ -1,1 +1,17 @@
-<p>menu works!</p>
+<h1>menu works!</h1>
+
+@if (items$ | async; as items)     {
+    <ul>
+        @for (item of items; track item.id) {
+            <li>
+                <a [routerLink]="['/menu', item.id]">
+                {{item.name}} - {{item.price | currency:'INR'}}
+                </a>
+            </li>
+        }
+
+    </ul>
+}
+@else {
+  <p>Loading menu...</p>
+}
